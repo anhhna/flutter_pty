@@ -240,9 +240,9 @@ static DWORD WINAPI wait_exit_thread(LPVOID arg)
 
     GetExitCodeProcess(options->pid, &exit_code);
 
-    ClosePseudoConsole(options->hpty);
     CloseHandle(options->pid);
     CloseHandle(options->hMutex);
+    ClosePseudoConsole(options->hpty);
 
     Dart_PostInteger_DL(options->port, exit_code);
 
